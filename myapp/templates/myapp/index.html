@@ -21,47 +21,62 @@
           </div>
           <div class="newsletter">
             <form method="POST">
-              <input
+              {% csrf_token %}
+
+              {{subscribe_form}}
+              <!-- <input
                 type="email"
                 name="email"
                 maxlength="100"
                 placeholder="Enter your email"
                 required=""
                 id="id_email"
-              />
+              /> -->
               <button class="btn btn-primary">Subscribe</button>
             </form>
+            {% if subscribe_success%}
+
+            <p>{{subscribe_success}}</p>  
+            {% endif %}
+
           </div>
         </center>
       </div>
     </main>
+     <!-- it run only if we have featured_blog -->
+    {% if featured %} 
+            
     <section class="sp">
       <div class="container">
+
+        <a href="{% url 'post' featured.slug %}">
+
+
         <div class="grid-2">
           <div class="post-img">
-            <img src="images/post.png" alt="" />
+            <img src="{{ featured.image.url }}" alt="" />
           </div>
           <div class="post-content">
             <div class="cetagory">
               <p>Category name</p>
             </div>
             <h1>
-              Lorem ipsum began as scrambled, nonsensical Latin derived from
-              Cicero's 1st-century BC text.
+                {{featured.title | title}}
             </h1>
             <p class="des">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure
-              ullam animi repellat non ut delectus culpa! Iste quia corporis
-              illum doloribus facilis quo totam eveniet sapiente odit
-              cupiditate? Cumque, nam?
+                {{featured.content | truncatechars:200}}
             </p>
             <a class="learn" href="#"
               >Learn more <span class="material-icons"> trending_flat </span></a
             >
           </div>
         </div>
+        </a> 
       </div>
     </section>
+
+    {% endif %}
+
     <section class="sp">
       <div class="container">
         <h1 class="sec-title">Top blogs</h1>
@@ -70,18 +85,18 @@
 
 
             
-          {% for i in post  %}
+          {% for i in top_posts  %}
                         
           <!-- card -->
           <a href="{% url 'post' i.slug  %}"> 
             <div class="card">
               <div class="post-img">
                 <img src="{{ i.image.url }}" alt="" />
-                <div class="tag">Tag name</div>
+                <div class="tag">{{i.tags.all.0.name}}</div>
               </div>
               <div class="card-content">
                 <h3>
-                  {{i.title}}
+                  {{i.title | title}}
                 </h3>
                 <div class="author">
                   <div class="profile-pic">
@@ -114,7 +129,7 @@
         <div class="grid-3">
 
 
-           {% for i in post %}
+           {% for i in recent_posts %}
                 
           <!-- card -->
 
@@ -122,11 +137,11 @@
             <div class="card">
               <div class="post-img">
                 <img src="{{ i.image.url }}" alt="" />
-                <div class="tag">Tag name</div>
+                <div class="tag">{{i.tags.all.0.name}}</div>
               </div>
               <div class="card-content">
                 <h3>
-                    {{i.title}}
+                    {{i.title | title}}
                 </h3>
                 <div class="author">
                   <div class="profile-pic">

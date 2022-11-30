@@ -30,6 +30,7 @@ class Post(models.Model): # model for Posts
     image  = models.ImageField(upload_to= "image/", blank=True , null=True)
     tags = models.ManyToManyField(Tag, blank=True, related_name='post')
     view_count = models.IntegerField(null=True, blank=True) # initially new block post created it can be null and also blank while creating post we dont want user to submit counts
+    is_featured = models.BooleanField(default=False)
     
 
     def __str__(self):
@@ -41,12 +42,20 @@ class Comments(models.Model):
     date = models.DateTimeField(auto_now=True)
     website = models.CharField(max_length=150, blank=True)
     email = models.EmailField( max_length=254)
-    
     post = models.ForeignKey(Post,on_delete=models.CASCADE) #many to one relationships
     
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) # null = true ,because without login anyone can comment , to keep a track oflogged in author 
+    parent = models.ForeignKey("self", on_delete=models.DO_NOTHING, null=True,blank=True, related_name='replies')
 
     def __str__(self):
         return f'{self.name} and {self.content}'
 
         
+        
+class Subscribe(models.Model): 
+    email = models.EmailField( max_length=254)
+    date = models.DateField( auto_now=True)
+
+    def __str__(self):
+        return self.email
+
