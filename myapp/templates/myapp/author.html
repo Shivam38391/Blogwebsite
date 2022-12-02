@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+
+{% block tittle %} Blog | {{profile.}}{% endblock tittle %}
+  
+
+{% block content %}
+    
+    
+
+    <main>
+      <div class="container">
+        <div class="layout">
+          <!-- left layout -->
+          <div class="left">
+            <div class="page-top">
+              <div class="top flex">
+                <div class="page-name">
+                  <a href="#" class="learn">
+                    <span class="material-icons"> keyboard_return </span> Go
+                    back
+                  </a>
+                  <h1>Author</h1>
+                </div>
+              </div>
+            </div>
+
+            <center>
+              <div class="typo">
+                <h1 class="title">{{profile.user.first_name}}</h1>
+                <p>
+                 <!-- other way to get bio -> top_posts[0].author.profile.bio -->
+                  {{profile.bio}}
+                </p>
+              </div>
+            </center>
+            <section class="sp">
+              <div class="container">
+                <h1 class="sec-title">Top posts</h1>
+                <div class="grid-2 blog">
+
+                  
+                  {% for tpost  in top_posts %}
+                    
+                    
+                  <!-- card -->
+                  <a href="{% url 'post' tpost.slug %}">
+                    <div class="card">
+                      <div class="post-img">
+                        <img src="{{tpost.image.url}}" alt="" />
+                        <div class="tag">{{tpost.tags.all.0.name}}</div>
+                      </div>
+                      <div class="card-content">
+                        <h3>
+                          {{tpost.title}}
+                        </h3>
+                        <div class="author">
+                          <div class="profile-pic">
+                            <!-- how to get profile image in shell-> top_posts[0].author.profile.profile_image -->
+                            <img src="{{tpost.author.profile.profile_image.url}}" alt="" />
+                          </div>
+                          <div class="details">
+                            <p>{{tpost.author.first_name}}</p>
+                            <small>{{tpost.last_update | date}}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- card end-->
+                  
+                  <!-- this will implement if there is nothing in the for loop -->
+                  {% empty %}
+
+                  <p>Sorry , Nothing to show here ! </p>
+
+
+                  {% endfor %}
+
+                  
+                </div>
+              </div>
+            </section>
+            <section class="sp">
+              <div class="container">
+                <h1 class="sec-title">Recent Post</h1>
+                <div class="grid-3 blog-grid">
+
+                  
+                  {% for recent in recent_posts %}
+                    
+                    
+                  <!-- card -->
+                  <a href="{% url 'post' recent.slug %}">
+                    <div class="card">
+                      <div class="post-img">
+                        <img src="{{ recent.image.url }}" alt="" />
+                        <div class="tag">{{recent.tags.all.0.name}}</div>
+                      </div>
+                      <div class="card-content">
+                        <h3>
+                          {{recent.title | title}}
+                        </h3>
+                        <div class="author">
+                          <div class="profile-pic">
+                            <img src="{{recent.author.profile.profile_image.url}}" alt="" />
+                          </div>
+                          <div class="details">
+                            <p>{{recent.author.first_name}}</p>
+                            <small>{{recent.last_update | date}}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- card end-->
+                  
+                  {% empty %}
+
+                  <p>Sorry , Nothing to show here ! </p>
+                    
+                    
+                  {% endfor %}
+
+                </div>
+                <center>
+                  <button class="btn btn-primary rounded view">
+                    View more
+                    <span class="material-icons"> trending_flat </span>
+                  </button>
+                </center>
+              </div>
+            </section>
+            <section class="sp">
+              <div class="container">
+                <h1 class="sec-title">Featueal</h1>
+                <div class="grid-3 blog-grid">
+                  <!-- card -->
+                  <a href="#">
+                    <div class="card">
+                      <div class="post-img">
+                        <img src="../images/post.png" alt="" />
+                        <div class="tag">Tag name</div>
+                      </div>
+                      <div class="card-content">
+                        <h3>
+                          A blog title and other stuffs will add here, also we
+                          can include.
+                        </h3>
+                        <div class="author">
+                          <div class="profile-pic">
+                            <img src="../images/author.svg" alt="" />
+                          </div>
+                          <div class="details">
+                            <p>Author name</p>
+                            <small>June 20, 2022</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- card end-->
+                  <!-- card -->
+                  <a href="#">
+                    <div class="card">
+                      <div class="post-img">
+                        <img src="../images/post.png" alt="" />
+                        <div class="tag">Tag name</div>
+                      </div>
+                      <div class="card-content">
+                        <h3>
+                          A blog title and other stuffs will add here, also we
+                          can include.
+                        </h3>
+                        <div class="author">
+                          <div class="profile-pic">
+                            <img src="../images/author.svg" alt="" />
+                          </div>
+                          <div class="details">
+                            <p>Author name</p>
+                            <small>June 20, 2022</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- card end-->
+                  <!-- card -->
+                  <a href="#">
+                    <div class="card">
+                      <div class="post-img">
+                        <img src="../images/post.png" alt="" />
+                        <div class="tag">Tag name</div>
+                      </div>
+                      <div class="card-content">
+                        <h3>
+                          A blog title and other stuffs will add here, also we
+                          can include.
+                        </h3>
+                        <div class="author">
+                          <div class="profile-pic">
+                            <img src="../images/author.svg" alt="" />
+                          </div>
+                          <div class="details">
+                            <p>Author name</p>
+                            <small>June 20, 2022</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- card end-->
+                </div>
+                <center>
+                  <button class="btn btn-primary rounded view">
+                    View more
+                    <span class="material-icons"> trending_flat </span>
+                  </button>
+                </center>
+              </div>
+            </section>
+          </div>
+          <!-- left layout end -->
+
+          <!-- right layout -->
+          <div class="right">
+            <div class="block">
+              <h2 class="title2">Top Authors</h2>
+              <div class="recent-post other-author">
+                <div class="rounded-img">
+                  <img src="../images/post.png" alt="" />
+                </div>
+                <div class="recent-content">
+                  <h3>
+                    A blog title and other stuffs will add here, also we can
+                    incluse.
+                  </h3>
+                  <a class="learn" href="#"
+                    >Learn more
+                    <span class="material-icons"> trending_flat </span></a
+                  >
+                </div>
+              </div>
+              <div class="recent-post other-author">
+                <div class="rounded-img">
+                  <img src="../images/post.png" alt="" />
+                </div>
+                <div class="recent-content">
+                  <h3>
+                    A blog title and other stuffs will add here, also we can
+                    incluse.
+                  </h3>
+                  <a class="learn" href="#"
+                    >Learn more
+                    <span class="material-icons"> trending_flat </span></a
+                  >
+                </div>
+              </div>
+              <div class="recent-post other-author">
+                <div class="rounded-img">
+                  <img src="../images/post.png" alt="" />
+                </div>
+                <div class="recent-content">
+                  <h3>
+                    A blog title and other stuffs will add here, also we can
+                    incluse.
+                  </h3>
+                  <a class="learn" href="#"
+                    >Learn more
+                    <span class="material-icons"> trending_flat </span></a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="block">
+              <h2 class="title2">Other Authors</h2>
+              <div class="recent-post other-author">
+                <div class="rounded-img">
+                  <img src="../images/post.png" alt="" />
+                </div>
+                <div class="recent-content">
+                  <h3>
+                    A blog title and other stuffs will add here, also we can
+                    incluse.
+                  </h3>
+                  <a class="learn" href="#"
+                    >Learn more
+                    <span class="material-icons"> trending_flat </span></a
+                  >
+                </div>
+              </div>
+              <div class="recent-post other-author">
+                <div class="rounded-img">
+                  <img src="../images/post.png" alt="" />
+                </div>
+                <div class="recent-content">
+                  <h3>
+                    A blog title and other stuffs will add here, also we can
+                    incluse.
+                  </h3>
+                  <a class="learn" href="#"
+                    >Learn more
+                    <span class="material-icons"> trending_flat </span></a
+                  >
+                </div>
+              </div>
+              <div class="recent-post other-author">
+                <div class="rounded-img">
+                  <img src="../images/post.png" alt="" />
+                </div>
+                <div class="recent-content">
+                  <h3>
+                    A blog title and other stuffs will add here, also we can
+                    incluse.
+                  </h3>
+                  <a class="learn" href="#"
+                    >Learn more
+                    <span class="material-icons"> trending_flat </span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- right layout end -->
+        </div>
+      </div>
+    </main>
+
+    {% endblock content %}

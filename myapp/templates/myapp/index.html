@@ -92,7 +92,10 @@
             <div class="card">
               <div class="post-img">
                 <img src="{{ i.image.url }}" alt="" />
-                <div class="tag">{{i.tags.all.0.name}}</div>
+
+                <!-- only show 1 tag in card that why we put all()[0].name -->
+
+                <div class="tag">{{i.tags.all.0.name}}</div> 
               </div>
               <div class="card-content">
                 <h3>
@@ -137,6 +140,9 @@
             <div class="card">
               <div class="post-img">
                 <img src="{{ i.image.url }}" alt="" />
+
+                <!-- only show 1 tag in card that why we put all()[0].name -->
+
                 <div class="tag">{{i.tags.all.0.name}}</div>
               </div>
               <div class="card-content">

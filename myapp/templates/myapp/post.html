@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block tittle %}Blog | The superblog{% endblock tittle %}
+  
 
 {% block content %}
     
@@ -61,10 +63,10 @@
                     <br /><br />
 
                     <div class="blog-tags">
-                      
+
+                      <!-- post.tags.all is query here -->
                       {% for i in post.tags.all  %}
 
-                      <!-- <div class="tag">{{i.name}}</div> -->
                       <a class="tag" href="{% url 'tag_page' i.slug %}">{{i.name}}</a> 
 
                       {% endfor %}
