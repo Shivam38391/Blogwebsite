@@ -3,6 +3,9 @@ from .models import Post ,Comments, Profile, Tag
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.contrib.auth.models import User
+from django.db.models import Count
+
 from .forms import CommentForm, SubscribeForm
 
 
@@ -116,14 +119,28 @@ def author_page(request, slug):
     profile =  Profile.objects.get(slug=slug)
     top_posts = Post.objects.filter(author= profile.user).order_by('-view_count')[0:2]
     recent_posts = Post.objects.filter(author= profile.user).order_by('-last_update')[0:2]
-    
+    #top authors
+    top_authors = User.objects.annotate(number = Count('post')).order_by('number') 
     
     context = {
         "profile": profile, 
         "top_posts":top_posts,
         "recent_posts": recent_posts,
+        'top_authors':top_authors,
     }
     
     return render(request, 'myapp/author.html', context)
     
+    
+    
+def search_post(request):
+    search_query = ""
+    
+    if request.GET:
+        search_query = request.GET.get('q')
+        
+    posts = Post.objects.filter(title__icontains= search_query)
+            
+    context = {'posts':posts, "search_query": search_query}
+    return render(request, 'myapp/search.html', context)
     
