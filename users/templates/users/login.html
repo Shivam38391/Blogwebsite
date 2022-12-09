@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<main style="padding-top: 71px;">
+
+
+    <form action="" method="post" class="form"> 
+        {% csrf_token %}
+      <center>
+        <div class="logo f-logo">
+          <i class="fa-brands fa-blogger"></i>
+        </div>
+
+    
+        <div class="inputs">
+          <div>
+          <div class="search-bar s-active input">
+            {{form.username}}
+            <div class="field-error">
+                
+            {% if form.errors %}
+                 <p>Your username or password incorrect please try again</p>
+            {% endif %}
+                    
+              </div>
+
+            <div class="animated-search">
+              <i class="uil uil-envelope-alt"></i>
+            </div>
+          </div>
+          <div class="search-bar s-active input">
+            {{form.password}}
+            <div class="animated-search">
+              <i class="uil uil-key-skeleton"></i>
+            </div>
+          </div>
+          
+          </div>
+
+          <input  class="btn btn-primary rounded"  type="submit" value="login">
+
+        
+        {% comment %}
+            
+            
+
+         <button class="btn btn-primary rounded" type="submit">
+            Login <span class="material-icons"> arrow_right_alt </span>
+          </button> 
+        {% endcomment %}
+
+          <p>Not have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+      </center>
+    </form>
+  
+
+
+
+
+    </main>
+    
+{% endblock content %}
+    

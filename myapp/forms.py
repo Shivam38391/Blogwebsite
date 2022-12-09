@@ -18,9 +18,7 @@ class CommentForm(forms.ModelForm):
         
         
 class SubscribeForm(forms.ModelForm):
-    """Form definition for Subscribe."""
     class Meta:
-        """Meta definition for Subscribeform."""
 
         model = Subscribe
         fields = "__all__"

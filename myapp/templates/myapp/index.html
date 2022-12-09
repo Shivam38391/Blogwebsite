@@ -5,7 +5,21 @@
         
     <main class="sp">
       <div class="container">
+
+ 
+
         <center>
+          <div class="alert alert-success">
+            {% if messages %}
+    
+              
+              {% for i in messages %}
+                  <h1><strong>Success!</strong> {{i}}</h1>
+              {% endfor %}
+                
+              
+            {% endif %}
+            </div>
           <div class="search-bar">
             <input type="text" placeholder="Search" />
             <a href="{% url 'search_post' %}"> 

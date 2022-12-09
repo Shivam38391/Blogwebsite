@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<main>
+    <div class="container">
+      <div class="page-name">
+        <a href="#" class="learn">
+          <span class="material-icons"> keyboard_return </span> Go back
+        </a>
+        <h1>Sign Up</h1>
+      </div>
+
+      {% if messages %}  
+      <ul>   
+          {% for message in messages %}  
+              <li>{{ message }}</li>  
+              {% endfor %}  
+      </ul>   
+      {% endif %}  
+
+      <form method="POST" action="#" class="form">
+        {% csrf_token %}
+        <center>
+          <div class="logo f-logo">
+            <i class="fa-brands fa-blogger"></i>
+          </div>
+          <div class="inputs">
+            <div>
+              <div class="search-bar s-active input">
+                    {{form.username}}
+                <!-- <input type="text" placeholder="User name" /> -->
+                <div class="animated-search">
+                  <i class="uil uil-user"></i>
+                </div>
+              </div>
+              <div class="field-error">
+                <!-- <p>Username already taken. Please try another one.</p> -->
+                {{form.username.errors}}
+              </div>
+            </div>
+
+            <div>
+              <div class="search-bar s-active input">
+                {{form.email}}
+                <!-- <input type="email" placeholder="Email" /> -->
+                <div class="animated-search">
+                  <i class="uil uil-envelope-alt"></i>
+                </div>
+              </div>
+
+              <div class="field-error">
+                <!-- <p>Enter a valid email address</p> -->
+                {{form.email.errors}}
+              </div>
+            </div>
+
+            <div>
+              <div class="search-bar s-active input">
+                {{form.password1}}
+                <!-- <input type="tpassword" placeholder="Create password" /> -->
+                <div class="animated-search">
+                  <i class="uil uil-key-skeleton"></i>
+                </div>
+              </div>
+              <div class="field-error">
+                
+                    {{form.password1.errors}}
+                    
+                <!-- <p>
+                  This password is too short. It must need to contain at least
+                  8 characters
+                </p> -->
+              </div>
+            </div>
+            <div>
+              <div class="search-bar s-active input">
+                {{form.password2}}
+                <!-- <input type="tpassword" placeholder="Confirm password" /> -->
+          
+                <div class="animated-search">
+                  <i class="uil uil-key-skeleton"></i>
+                </div>
+              </div>
+              <div class="field-error">
+                <!-- <p>
+                  This password is too short. It must need to contain at least
+                  8 characters
+                </p> -->
+                {{form.password2.errors}}
+              </div>
+            </div>
+            <input class="btn btn-primary rounded" type="submit" value="sign in"  > <span class="material-icons"> arrow_right_alt </span>
+            <!-- <button class="btn btn-primary rounded">
+              SIGN UP <span class="material-icons"> arrow_right_alt </span>
+            </button> -->
+            <center>
+              <p>Already have an account? <a href="login.html">Login</a></p>
+            </center>
+          </div>
+        </center>
+      </form>
+    </div>
+  </main>
+ 
+
+{% endblock content %}
+    
