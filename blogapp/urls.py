@@ -16,9 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+from schema_graph.views import Schema
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('myapp.urls')),
     path('', include('users.urls')),
     
+]
+
+urlpatterns += [
+    # On Django 2+:
+    path("schema/", Schema.as_view()),
+    # Or, on Django < 2:
+
 ]

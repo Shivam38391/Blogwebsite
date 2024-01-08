@@ -40,6 +40,11 @@ INSTALLED_APPS = [
    #myapp
     'myapp.apps.MyappConfig',
     "users.apps.UsersConfig",
+    
+    
+       'schema_graph',
+       
+         'django_login_history2',
 ]
 
 MIDDLEWARE = [

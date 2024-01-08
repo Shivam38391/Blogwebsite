@@ -58,6 +58,16 @@ class Post(models.Model): # model for Posts
 
     def __str__(self):
         return self.title
+    
+    
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+        
+        
+        
+        
 
 class Comments(models.Model):
     name = models.CharField( max_length=100)
